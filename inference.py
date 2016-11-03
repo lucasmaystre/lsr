@@ -37,6 +37,10 @@ def lsr(nb_items, rankings, initial_strengths=None):
     Returns:
         strengths (List[float]): an estimate of the model parameters given
             the data.
+
+    Raises:
+        ValueError: If the rankings do not lead to a strongly connected
+            comparison graph.
     """
     if initial_strengths is None:
         ws = np.ones(nb_items)
@@ -86,6 +90,8 @@ def ilsr(nb_items, rankings, max_iter=100, eps=1e-8):
             the data.
 
     Raises:
+        ValueError: If the rankings do not lead to a strongly connected
+            comparison graph.
         RuntimeError: If the algorithm does not converge after `max_iter`
             iterations.
     """
@@ -125,7 +131,7 @@ def statdist(generator):
 
     Args:
         generator (numpy.ndarray): The infinitesimal generator matrix of the
-        Markov chain.
+            Markov chain.
 
     Returns:
         dist (List[float]): The unnormalized stationary distribution of the
